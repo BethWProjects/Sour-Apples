@@ -37,7 +37,7 @@ class App extends Component {
 
     clearInputs = () => {
       this.setState({ searchMovie: '' })
-      this.fetchData()
+      fetchData()
     }
 
     render() {
@@ -49,25 +49,21 @@ class App extends Component {
             <NavLink to='/'><img role="button" className="home-icon" src={home}
             alt="Home icon to take user back to main view" onClick={() => this.clearInputs()}/></NavLink>
           </nav>
-          <main className="App">
-           
+          <main className="App">   
             <Route exact path='/' render={() =>  ( 
               <div>
                 <Search searchForMovie={this.searchForMovie} />
-                {this.state.loading && <p className="apple-loader-text"> Loading your sour apples...</p>}
-                {this.state.loading && <img src={apple} className="apple-loader" alt="apple loader" />}
-                {this.state.error && <h3>Oops, that was a bad apple, please try again!</h3> }
-                <Movies movies={this.state.movies} showSingleMovie={this.showSingleMovie} searchMovie={this.state.searchMovie}/>  
+                <Movies movies={this.state.movies} searchMovie={this.state.searchMovie}/>  
               </div> )}
               />
             <Route exact path='/:id' render={({ match }) => (
              <div>
-                {this.state.loading && <p className="apple-loader-text"> Loading your sour apples...</p>}
-                {this.state.loading && <img src={apple} className="apple-loader" alt="apple loader" />}
-                {this.state.error && <h3>Oops, that was a bad apple, please try again!</h3> }
-                <SingleMovie id={match.params.id}/> 
+                <SingleMovie id={match.params.id} /> 
               </div> )} 
             />
+          {this.state.loading && <p className="apple-loader-text"> Loading your sour apples...</p>}
+          {this.state.loading && <img src={apple} className="apple-loader" alt="apple loader" />}
+          {this.state.error && <h3>Oops, that was a bad apple, please try again!</h3> }
           </main>
           <footer>
             <h3 className="footer-text"> 🍏 Created by Beth and Marianne </h3>

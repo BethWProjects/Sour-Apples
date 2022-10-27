@@ -18,7 +18,6 @@ class SingleMovie extends Component {
      .catch(error => this.setState({error: error}))
   }
 
- 
 
   render() {
     const singleMovie = this.state.singleMovie
@@ -33,7 +32,8 @@ class SingleMovie extends Component {
       }
     }
     return (
-      this.state.singleMovie ? <div>
+      this.state.error && <h3>Oops, that was a bad apple, please try again!</h3> ||
+      this.state.singleMovie && <div>
         <div className="single-movie-container" >
           <img className="backdrop" src={singleMovie.backdrop_path} alt="movie background"/>
           <article className="article-details">
@@ -53,9 +53,10 @@ class SingleMovie extends Component {
             </div>
           </article>
           </div>
-        </div> : <div>
-            {this.state.error && <h3>Oops, that was a bad apple, please try again!</h3>}
-        </div>
+        </div> 
+        
+            
+        
          )
 }
 }
